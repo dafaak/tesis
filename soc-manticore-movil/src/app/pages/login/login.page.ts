@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    this.navController.navigateRoot('main/tabs/tab1').then();
+    this.navController.navigateRoot('cronograma').then();
 
   }
 

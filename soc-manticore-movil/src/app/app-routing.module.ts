@@ -14,6 +14,14 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'login'
+  },
+  {
+    path: 'cronograma',
+    loadChildren: () => import('./pages/cronograma/cronograma.module').then( m => m.CronogramaPageModule)
+  },
+  {
+    path: 'visor-cronograma',
+    loadChildren: () => import('./pages/visor-cronograma/visor-cronograma.module').then( m => m.VisorCronogramaPageModule)
   }
 ];
 @NgModule({
