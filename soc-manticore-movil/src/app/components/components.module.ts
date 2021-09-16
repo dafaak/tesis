@@ -7,7 +7,7 @@ import {MapaComponent} from './mapa/mapa.component';
 @NgModule({
   declarations: [MapaComponent],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [MapaComponent]
 })
