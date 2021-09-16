@@ -26,6 +26,10 @@ export class MapaComponent implements OnInit, AfterViewInit {
       container: this.mapa.nativeElement,
       style: 'mapbox://styles/mapbox/streets-v11',
     });
+
+    map.on('load', () => {
+      map.resize();
+    })
   }
 
 
