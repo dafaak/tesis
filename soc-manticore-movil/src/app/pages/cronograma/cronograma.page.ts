@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
+import {Geolocation} from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-cronograma',
@@ -8,12 +9,32 @@ import {NavController} from '@ionic/angular';
 })
 export class CronogramaPage implements OnInit {
 
-  constructor(private navController: NavController) { }
+  ubicacionVendedor = '';
+
+  constructor(private navController: NavController,
+              private geolocation: Geolocation) { }
 
   ngOnInit() {
+    this.obtenerGeolocation();
   }
 
   irAMapa() {
-    this.navController.navigateRoot('visor-cronograma').then();
+    this.navController.navigateRoot(
+      `visor-cronograma/${this.ubicacionVendedor}`
+    ).then();
+  }
+  obtenerGeolocation(): void {
+    this.geolocation.getCurrentPosition()
+      .then(
+        res => {
+          console.log(res);
+          this.ubicacionVendedor = `${res.coords.latitude}, ${res.coords.longitude}`;
+        }
+      ).catch(
+      error => {
+        console.log(error, 'No se pudo obtener la ubicación');
+      }
+    )
+
   }
 }

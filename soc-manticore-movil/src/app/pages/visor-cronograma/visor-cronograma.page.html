@@ -6,9 +6,13 @@
 
 <ion-content>
 
-  <app-mapa></app-mapa>
+  <app-mapa
+    [latitudVendedor]="ubicacionVendedor[0]"
+    [longitudVendedor]="ubicacionVendedor[1]">
 
-  <ion-button >
+  </app-mapa>
+
+  <ion-button>
     Iniciar Ruta
   </ion-button>
 </ion-content>
