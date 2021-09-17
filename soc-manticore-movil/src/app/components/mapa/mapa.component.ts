@@ -13,7 +13,7 @@ export class MapaComponent implements OnInit, AfterViewInit {
 
 
   @Input()
-  longitudVendedor: string;
+  longitudVendedor: number;
 
   @Input()
   latitudVendedor: number
