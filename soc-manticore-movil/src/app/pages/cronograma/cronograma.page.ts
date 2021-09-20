@@ -28,7 +28,7 @@ export class CronogramaPage implements OnInit {
       .then(
         res => {
           console.log(res);
-          this.ubicacionVendedor = `${res.coords.latitude}, ${res.coords.longitude}`;
+          this.ubicacionVendedor = `${res.coords.latitude},${res.coords.longitude}`;
         }
       ).catch(
       error => {

@@ -26,7 +26,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/visor-cronograma/visor-cronograma.module').then( m => m.VisorCronogramaPageModule)
   },
   {
-    path: 'menu-principal',
+    path: 'menu-principal/:lat/:lon',
     loadChildren: () => import('./pages/menu-principal/menu-principal.module').then( m => m.MenuPrincipalPageModule)
   }
 ];

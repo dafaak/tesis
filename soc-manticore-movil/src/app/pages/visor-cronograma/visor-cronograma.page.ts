@@ -11,6 +11,8 @@ export class VisorCronogramaPage implements OnInit {
 
 
   ubicacionVendedor = [];
+  latitud = 0;
+  longitud = 0;
 
   constructor(private route: ActivatedRoute,
               private navController: NavController) {
@@ -20,7 +22,9 @@ export class VisorCronogramaPage implements OnInit {
 
     const coordenadas = this.route.snapshot.paramMap.get('geo');
     const latLngArreglo = coordenadas.split(',');
-    this.ubicacionVendedor.push(+latLngArreglo[0], +latLngArreglo[1]);
+    this.latitud = +latLngArreglo[0];
+    this.longitud = +latLngArreglo[1];
+    this.ubicacionVendedor.push(this.latitud, this.longitud);
 
     console.log(coordenadas, this.ubicacionVendedor);
     // const [latitud] = +latLng[0];
@@ -31,6 +35,7 @@ export class VisorCronogramaPage implements OnInit {
 
 
   irAMenuPrincipal() {
-    this.navController.navigateRoot('menu-principal').then();
+    this.navController.navigateRoot(`menu-principal/${this.latitud}/${this.longitud}`,).then();
+
   }
 }
