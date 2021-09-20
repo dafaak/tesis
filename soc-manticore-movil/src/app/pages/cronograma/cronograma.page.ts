@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController} from '@ionic/angular';
+import {LoadingController, NavController} from '@ionic/angular';
 import {Geolocation, Geoposition} from '@ionic-native/geolocation/ngx';
 
 @Component({
@@ -10,9 +10,12 @@ import {Geolocation, Geoposition} from '@ionic-native/geolocation/ngx';
 export class CronogramaPage implements OnInit {
 
   ubicacionVendedor = '';
+  cargandoGeo = false;
 
-  constructor(private navController: NavController,
-              private geolocation: Geolocation) {
+  constructor(
+    public loadingController: LoadingController,
+    private navController: NavController,
+    private geolocation: Geolocation) {
   }
 
   ngOnInit() {
@@ -22,16 +25,38 @@ export class CronogramaPage implements OnInit {
 
 
     try {
+      this.cargandoGeo = true
       const res = await this.obtenerGeolocation();
+      await this.presentLoadingWithOptions();
       this.ubicacionVendedor = `${res.coords.latitude},${res.coords.longitude}`;
-      await this.navController.navigateRoot(
-        `visor-cronograma/${this.ubicacionVendedor}`
-      );
+      if (this.ubicacionVendedor) {
+        console.log(this.ubicacionVendedor);
+        await this.navController.navigateRoot(
+          `visor-cronograma/${this.ubicacionVendedor}`
+        );
+      }
+
+
     } catch (err) {
       console.error(err);
     }
 
   }
+
+
+  async presentLoadingWithOptions(): Promise<void> {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Cargando..',
+      duration: 1500
+    });
+    await loading.present();
+    await loading.onDidDismiss();
+  }
+
+  // async cerrarLoading(loading): Promise<void> {
+  //   await loading.onDidDismiss();
+  // }
 
   obtenerGeolocation(): Promise<Geoposition> {
     return this.geolocation.getCurrentPosition()
