@@ -1,18 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>visor-cronograma</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
   <app-mapa
     [latitudVendedor]="ubicacionVendedor[0]"
     [longitudVendedor]="ubicacionVendedor[1]">
 
   </app-mapa>
 
-  <ion-button (click)="irAMenuPrincipal()" >
-    Iniciar Ruta
-  </ion-button>
+  <ion-back-button [defaultHref]="'/cronograma'" text="" icon="close-circle" class="boton-regresar" >
+
+  </ion-back-button>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="irCronograma()" >
+      <ion-icon name="close-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="irAMenuPrincipal()" >
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+
 </ion-content>
+
+
+
+
+
+<!--  <ion-button (click)="irAMenuPrincipal()" >-->
+<!--    Iniciar Ruta-->
+<!--  </ion-button>-->

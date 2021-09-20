@@ -38,4 +38,8 @@ export class VisorCronogramaPage implements OnInit {
     this.navController.navigateRoot(`menu-principal`,).then();
 
   }
+
+  irCronograma() {
+    this.navController.navigateRoot('cronograma').then();
+  }
 }
