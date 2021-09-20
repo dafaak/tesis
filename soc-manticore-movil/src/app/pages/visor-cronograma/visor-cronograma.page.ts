@@ -35,7 +35,7 @@ export class VisorCronogramaPage implements OnInit {
 
 
   irAMenuPrincipal() {
-    this.navController.navigateRoot(`menu-principal/${this.latitud}/${this.longitud}`,).then();
+    this.navController.navigateRoot(`menu-principal`,).then();
 
   }
 }
